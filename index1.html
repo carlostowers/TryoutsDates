@@ -6,27 +6,6 @@
 <title>Mi Try-Out — Vaqueros 2026-2027</title>
 <meta name="description" content="Consulta cuando te toca tu try-out con el Club Voleibol Vaqueros. Agosto 2026, cancha Collazo.">
 <meta name="theme-color" content="#023B9F">
-
-<!-- Vista previa al compartir el enlace (WhatsApp, Facebook, Instagram, iMessage).
-     IMPORTANTE: og:url y og:image tienen que ser URLs absolutas y publicas.
-     Si cambias de dominio, actualiza las dos. -->
-<link rel="canonical" href="https://vaquerostryouts26-27.thegriit.com/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Club Voleibol Vaqueros">
-<meta property="og:locale" content="es_PR">
-<meta property="og:url" content="https://vaquerostryouts26-27.thegriit.com/">
-<meta property="og:title" content="¿Cuándo es mi try-out? — Vaqueros 2026-2027">
-<meta property="og:description" content="Busca tu división y mira tus 3 fechas de try-out. Del 1 al 17 de agosto en la cancha Collazo.">
-<meta property="og:image" content="https://vaquerostryouts26-27.thegriit.com/og-image.png">
-<meta property="og:image:secure_url" content="https://vaquerostryouts26-27.thegriit.com/og-image.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Try-outs Vaqueros 2026-2027, del 1 al 17 de agosto, cancha Collazo.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="¿Cuándo es mi try-out? — Vaqueros 2026-2027">
-<meta name="twitter:description" content="Busca tu división y mira tus 3 fechas de try-out. Del 1 al 17 de agosto en la cancha Collazo.">
-<meta name="twitter:image" content="https://vaquerostryouts26-27.thegriit.com/og-image.png">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -329,17 +308,40 @@ function proximo(list){
   return null;
 }
 
-/* ---------------- calendario ----------------
-   Los .ics son archivos reales en la carpeta cal/, generados por
-   calendarios.py. No se arman en JavaScript a proposito: iOS Safari
-   bloquea las descargas tipo data: y manda las de Blob a Archivos en
-   vez de al calendario. Un archivo servido con Content-Type
-   text/calendar hace que Safari abra directo la hoja de "Anadir al
-   calendario", y funciona igual en Android y en computadora.
-   Si cambias los horarios, corre: python3 calendarios.py            */
-function icsRuta(div){
-  return "cal/" + norm(div).replace(/[^a-z0-9]+/g, "-")
-                           .replace(/^-|-$/g, "") + ".ics";
+/* ---------------- archivo .ics ---------------- */
+function utc(d){
+  return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+"T"+
+         pad(d.getUTCHours())+pad(d.getUTCMinutes())+"00Z";
+}
+/* hora local "flotante": el evento cae a la hora de cancha sin
+   importar la zona horaria del telefono. */
+function local(d){
+  return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"T"+
+         pad(d.getHours())+pad(d.getMinutes())+"00";
+}
+function icsDe(list, titulo){
+  var L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CVVB//Try-Outs 2026-27//ES",
+           "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Try-outs "+titulo], i;
+  for (i = 0; i < list.length; i++) {
+    var s = list[i], st = startOf(s), en = new Date(st.getTime()+DUR*60000);
+    L.push("BEGIN:VEVENT");
+    L.push("UID:cvvb-"+s.id+"-"+norm(titulo).replace(/[^a-z0-9]/g,"")+"@vaqueros");
+    L.push("DTSTAMP:"+utc(new Date()));
+    L.push("DTSTART:"+local(st));
+    L.push("DTEND:"+local(en));
+    L.push("SUMMARY:Try-out "+titulo+" - Vaqueros");
+    L.push("LOCATION:"+SEDE_DIR);
+    L.push("DESCRIPTION:Try-out Club Voleibol Vaqueros 2026-27.\\n"+
+           "Llega entre 30 y 45 min antes (a las "+llegada(s)+").\\n"+
+           "Carpa 1 si ya estas inscrito\\, Carpa 2 si no.\\n"+
+           "Coloca tu numero al frente de la camisa.\\n"+
+           "Un (1) acompanante por participante.");
+    L.push("BEGIN:VALARM","TRIGGER:-PT3H","ACTION:DISPLAY",
+           "DESCRIPTION:Try-out "+titulo+" hoy a las "+s.h,"END:VALARM");
+    L.push("END:VEVENT");
+  }
+  L.push("END:VCALENDAR");
+  return "data:text/calendar;charset=utf-8," + encodeURIComponent(L.join("\r\n"));
 }
 
 /* ---------------- vista inicial ---------------- */
@@ -429,6 +431,10 @@ function tarjeta(s, div){
   h += '<p class="hora">'+esc(s.h)+badge+'</p>';
   h += '<p class="meta">Cancha <b>'+esc(s.sede)+'</b> · llega a las <b>'+
        esc(llegada(s))+'</b></p>';
+  if (!pasado(s)) {
+    h += '<a class="ics" href="'+icsDe([s], div)+'" download="try-out-'+
+         pad(s.dia)+'-agosto.ics">Añadir esta fecha al calendario</a>';
+  }
   return h + '</div>';
 }
 
@@ -453,11 +459,12 @@ function vistaDiv(){
   }
   h += '<p class="section"><em>Tus fechas ('+list.length+')</em><span></span></p>';
   for (i = 0; i < list.length; i++) { h += tarjeta(list[i], div); }
-  if (px) {
-    h += '<div class="actions"><a class="btn pri" href="'+icsRuta(div)+
-         '" download>Añadir mis fechas al calendario</a></div>'+
-         '<p class="cut">Se abre el calendario de tu teléfono con las '+
-         list.length+' fecha'+(list.length===1?"":"s")+' y un aviso 3 horas antes.</p>';
+  var futuras = [];
+  for (i = 0; i < list.length; i++) { if (!pasado(list[i])) futuras.push(list[i]); }
+  if (futuras.length > 1) {
+    h += '<div class="actions"><a class="btn pri" href="'+icsDe(futuras, div)+
+         '" download="try-outs-'+norm(div).replace(/[^a-z0-9]+/g,"-")+'.ics">'+
+         'Añadir las '+futuras.length+' fechas al calendario</a></div>';
   }
   return h + infoBox();
 }
