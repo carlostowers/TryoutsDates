@@ -159,6 +159,17 @@ h1{font-family:var(--disp);font-weight:700;font-size:38px;line-height:1.02;
 </style>
 </head>
 <body>
+<!-- Vercel Web Analytics + Speed Insights.
+     Solo funcionan en el dominio de Vercel; en local dan 404 sin romper nada.
+     Hay que activarlos una vez en el dashboard del proyecto:
+     Vercel > el proyecto > Analytics > Enable, y Speed Insights > Enable. -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+
 <div class="wrap">
   <header class="top">
     <img class="logo" src="logo.png" alt="Club Voleibol Vaqueros" width="92" height="56"
@@ -236,6 +247,15 @@ var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio",
              "agosto","septiembre","octubre","noviembre","diciembre"];
 
 var state = { q:"", div:"" };
+
+/* Eventos de Vercel Analytics. Sirven para saber que divisiones consulta
+   la gente y cuantos usan la calculadora de edad. No recoge datos
+   personales: solo el nombre de la division y la categoria U.
+   Para desactivarlos, vacia el cuerpo de esta funcion. */
+function evento(nombre, datos){
+  try { if (window.va) window.va("event", {name:nombre, data:datos || {}}); }
+  catch (e) { return; }
+}
 
 /* ---------------- utilidades ---------------- */
 function norm(s){ return (s||"").toLowerCase()
@@ -370,6 +390,7 @@ function edadResultado(){
          'pregunta al club antes del try-out.</p>';
   }
   box.innerHTML = h + '</div>';
+  evento("calculadora", {categoria: cat, genero: g});
 }
 
 function vistaInicio(){
@@ -404,8 +425,8 @@ function tarjeta(s, div){
   var h = '<div class="card'+(pasado(s) ? " past" : "")+'">';
   var badge = "";
   if (enCurso(s)) badge = '<span class="badge hoy">En cancha ahora</span>';
-  else if (esHoy(s)) badge = '<span class="badge hoy">Hoy</span>';
   else if (pasado(s)) badge = '<span class="badge ya">Ya pasó</span>';
+  else if (esHoy(s)) badge = '<span class="badge hoy">Hoy</span>';
   h += '<p class="fecha">'+esc(fechaLarga(s))+'</p>';
   h += '<p class="hora">'+esc(s.h)+badge+'</p>';
   h += '<p class="meta">Cancha <b>'+esc(s.sede)+'</b> · llega a las <b>'+
@@ -504,7 +525,11 @@ document.addEventListener("click", function(e){
   var b = e.target.closest ? e.target.closest("[data-act]") : null;
   if (!b) return;
   var act = b.getAttribute("data-act");
-  if (act === "div") { state.div = b.getAttribute("data-v"); window.scrollTo(0,0); }
+  if (act === "div") {
+    state.div = b.getAttribute("data-v");
+    evento("division", {division: state.div});
+    window.scrollTo(0,0);
+  }
   else if (act === "back") { state.div = ""; window.scrollTo(0,0); }
   else return;
   render();

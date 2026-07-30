@@ -1,7 +1,7 @@
 /* Service worker — Mi Try-Out CVVB 2026-27.
    Sube CACHE a v2, v3... cada vez que cambies index.html,
    asi los telefonos que ya lo instalaron reciben la version nueva. */
-var CACHE = "mi-tryout-cvvb-v1";
+var CACHE = "mi-tryout-cvvb-v2";
 var ASSETS = [
   "./",
   "./index.html",
@@ -38,6 +38,11 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   var req = e.request;
   if (req.method !== "GET") return;
+
+  /* Vercel Analytics y Speed Insights: dejarlos pasar directo a la red.
+     Si los cacheamos, las metricas dejan de reportarse bien. */
+  if (req.url.indexOf("/_vercel/") >= 0) return;
+
   var esHTML = req.mode === "navigate" ||
                (req.headers.get("accept") || "").indexOf("text/html") >= 0;
   if (esHTML) {
