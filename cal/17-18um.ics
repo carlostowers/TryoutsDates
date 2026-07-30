@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Club Voleibol Vaqueros//Try-Outs 2026-27//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Try-outs 17-18UM - Vaqueros
+X-WR-TIMEZONE:America/Puerto_Rico
+BEGIN:VEVENT
+UID:cvvb-36-17-18um@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260809T163000
+DTEND:20260809T180000
+SUMMARY:Try-out 17-18UM - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 17-18UM - Club Voleibol Vaqueros 2026-27.\nLlega entr
+ e 30 y 45 minutos antes (a las 3:45pm).\nCarpa 1 si ya estas inscrito\; 
+ Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acompan
+ ante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 17-18UM hoy a las 4:30pm
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-42-17-18um@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260811T203000
+DTEND:20260811T220000
+SUMMARY:Try-out 17-18UM - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 17-18UM - Club Voleibol Vaqueros 2026-27.\nLlega entr
+ e 30 y 45 minutos antes (a las 7:45pm).\nCarpa 1 si ya estas inscrito\; 
+ Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acompan
+ ante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 17-18UM hoy a las 8:30pm
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-48-17-18um@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260813T203000
+DTEND:20260813T220000
+SUMMARY:Try-out 17-18UM - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 17-18UM - Club Voleibol Vaqueros 2026-27.\nLlega entr
+ e 30 y 45 minutos antes (a las 7:45pm).\nCarpa 1 si ya estas inscrito\; 
+ Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acompan
+ ante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 17-18UM hoy a las 8:30pm
+END:VALARM
+END:VEVENT
+END:VCALENDAR

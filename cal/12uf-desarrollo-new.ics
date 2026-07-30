@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Club Voleibol Vaqueros//Try-Outs 2026-27//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Try-outs 12UF Desarrollo (New) - Vaqueros
+X-WR-TIMEZONE:America/Puerto_Rico
+BEGIN:VEVENT
+UID:cvvb-28-12uf-desarrollo-new@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260808T103000
+DTEND:20260808T120000
+SUMMARY:Try-out 12UF Desarrollo (New) - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 12UF Desarrollo (New) - Club Voleibol Vaqueros 2026-2
+ 7.\nLlega entre 30 y 45 minutos antes (a las 9:45am).\nCarpa 1 si ya est
+ as inscrito\; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\n
+ Un (1) acompanante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 12UF Desarrollo (New) hoy a las 10:30am
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-32-12uf-desarrollo-new@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260809T103000
+DTEND:20260809T120000
+SUMMARY:Try-out 12UF Desarrollo (New) - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 12UF Desarrollo (New) - Club Voleibol Vaqueros 2026-2
+ 7.\nLlega entre 30 y 45 minutos antes (a las 9:45am).\nCarpa 1 si ya est
+ as inscrito\; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\n
+ Un (1) acompanante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 12UF Desarrollo (New) hoy a las 10:30am
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-47-12uf-desarrollo-new@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260813T190000
+DTEND:20260813T203000
+SUMMARY:Try-out 12UF Desarrollo (New) - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 12UF Desarrollo (New) - Club Voleibol Vaqueros 2026-2
+ 7.\nLlega entre 30 y 45 minutos antes (a las 6:15pm).\nCarpa 1 si ya est
+ as inscrito\; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\n
+ Un (1) acompanante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 12UF Desarrollo (New) hoy a las 7:00pm
+END:VALARM
+END:VEVENT
+END:VCALENDAR

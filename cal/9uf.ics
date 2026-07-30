@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Club Voleibol Vaqueros//Try-Outs 2026-27//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Try-outs 9UF - Vaqueros
+X-WR-TIMEZONE:America/Puerto_Rico
+BEGIN:VEVENT
+UID:cvvb-0-9uf@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260801T090000
+DTEND:20260801T103000
+SUMMARY:Try-out 9UF - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 9UF - Club Voleibol Vaqueros 2026-27.\nLlega entre 30
+  y 45 minutos antes (a las 8:15am).\nCarpa 1 si ya estas inscrito\; Carp
+ a 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acompanante
+  por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 9UF hoy a las 9:00am
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-6-9uf@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260802T090000
+DTEND:20260802T103000
+SUMMARY:Try-out 9UF - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 9UF - Club Voleibol Vaqueros 2026-27.\nLlega entre 30
+  y 45 minutos antes (a las 8:15am).\nCarpa 1 si ya estas inscrito\; Carp
+ a 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acompanante
+  por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 9UF hoy a las 9:00am
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-27-9uf@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260808T090000
+DTEND:20260808T103000
+SUMMARY:Try-out 9UF - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 9UF - Club Voleibol Vaqueros 2026-27.\nLlega entre 30
+  y 45 minutos antes (a las 8:15am).\nCarpa 1 si ya estas inscrito\; Carp
+ a 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acompanante
+  por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 9UF hoy a las 9:00am
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Club Voleibol Vaqueros//Try-Outs 2026-27//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Try-outs 4-6U Mixto - Vaqueros
+X-WR-TIMEZONE:America/Puerto_Rico
+BEGIN:VEVENT
+UID:cvvb-52-4-6u-mixto@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260815T090000
+DTEND:20260815T103000
+SUMMARY:Try-out 4-6U Mixto - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 4-6U Mixto - Club Voleibol Vaqueros 2026-27.\nLlega e
+ ntre 30 y 45 minutos antes (a las 8:15am).\nCarpa 1 si ya estas inscrito
+ \; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) acom
+ panante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 4-6U Mixto hoy a las 9:00am
+END:VALARM
+END:VEVENT
+END:VCALENDAR

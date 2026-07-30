@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Club Voleibol Vaqueros//Try-Outs 2026-27//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Try-outs 15UF Open/Club - Vaqueros
+X-WR-TIMEZONE:America/Puerto_Rico
+BEGIN:VEVENT
+UID:cvvb-13-15uf-open-club@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260803T190000
+DTEND:20260803T203000
+SUMMARY:Try-out 15UF Open/Club - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 15UF Open/Club - Club Voleibol Vaqueros 2026-27.\nLle
+ ga entre 30 y 45 minutos antes (a las 6:15pm).\nCarpa 1 si ya estas insc
+ rito\; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) 
+ acompanante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 15UF Open/Club hoy a las 7:00pm
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-19-15uf-open-club@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260805T190000
+DTEND:20260805T203000
+SUMMARY:Try-out 15UF Open/Club - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 15UF Open/Club - Club Voleibol Vaqueros 2026-27.\nLle
+ ga entre 30 y 45 minutos antes (a las 6:15pm).\nCarpa 1 si ya estas insc
+ rito\; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) 
+ acompanante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 15UF Open/Club hoy a las 7:00pm
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cvvb-30-15uf-open-club@vaqueros
+DTSTAMP:20260730T011028Z
+DTSTART:20260808T150000
+DTEND:20260808T163000
+SUMMARY:Try-out 15UF Open/Club - Vaqueros
+LOCATION:Cancha Collazo
+DESCRIPTION:Try-out 15UF Open/Club - Club Voleibol Vaqueros 2026-27.\nLle
+ ga entre 30 y 45 minutos antes (a las 2:15pm).\nCarpa 1 si ya estas insc
+ rito\; Carpa 2 si no.\nColoca tu numero al frente de la camisa.\nUn (1) 
+ acompanante por participante.
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Try-out 15UF Open/Club hoy a las 3:00pm
+END:VALARM
+END:VEVENT
+END:VCALENDAR
