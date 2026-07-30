@@ -1,0 +1,17 @@
+{
+  "name": "Mi Try-Out — Club Voleibol Vaqueros",
+  "short_name": "Mi Try-Out",
+  "description": "Consulta cuando te toca tu try-out. Vaqueros 2026-2027, cancha Collazo.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F7FC",
+  "theme_color": "#023B9F",
+  "lang": "es",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

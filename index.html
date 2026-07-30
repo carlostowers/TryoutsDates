@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi Try-Out — Vaqueros 2026-2027</title>
+<meta name="description" content="Consulta cuando te toca tu try-out con el Club Voleibol Vaqueros. Agosto 2026, cancha Collazo.">
+<meta name="theme-color" content="#023B9F">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mi Try-Out">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF; --paper:#F4F7FC; --blue:#023B9F; --deep:#01245F;
+  --yellow:#FFCF27; --text:#0B1533; --muted:#4A5678; --line:#D3DCEE;
+  --alert:#A32219; --alert-bg:#FCEDEB; --amber:#7E5200; --amber-bg:#FFF6E0;
+  --green:#0B6B3A; --green-bg:#E8F5ED;
+  --disp:'Barlow Condensed',system-ui,-apple-system,sans-serif;
+  --body:'Barlow',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;background:var(--paper)}
+body{background:var(--paper);color:var(--text);font-family:var(--body);font-size:16px;
+  line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:660px;margin:0 auto;padding:0 18px calc(72px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+.top{padding:22px 0 4px}
+.logo{display:block;height:56px;width:auto;margin-bottom:12px}
+.eyebrow{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px}
+.eyebrow span{height:2px;flex:1;background:var(--yellow)}
+h1{font-family:var(--disp);font-weight:700;font-size:38px;line-height:1.02;
+  text-transform:uppercase;margin-top:8px;color:var(--deep)}
+.sub{color:var(--muted);font-size:14px;margin-top:8px}
+
+/* tarjeta amarilla — solo dentro de la division del jugador */
+.now{background:var(--yellow);border-radius:12px;padding:15px 16px;margin:18px 0 0;display:block}
+.now u{display:block;text-decoration:none;font-family:var(--disp);font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--deep);opacity:.85}
+.now b{display:block;font-family:var(--disp);font-weight:700;font-size:26px;
+  line-height:1.1;color:var(--deep);margin-top:2px}
+.now i{display:block;font-style:normal;font-size:14.5px;color:var(--deep);opacity:.9;margin-top:4px}
+.now.quiet{background:var(--white);border:1px solid var(--line)}
+.now.quiet u{color:var(--blue)}
+.now.quiet b{color:var(--text)}
+.now.quiet i{color:var(--muted);opacity:1}
+
+.panel{background:var(--white);border:2px solid var(--blue);border-radius:12px;
+  padding:16px 16px 17px;margin-top:20px}
+.panel h2{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.panel p.hint{font-size:14px;color:var(--muted);margin-bottom:13px;line-height:1.55}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.fields label{font-family:var(--disp);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+.fields label.wide{grid-column:1 / -1}
+.fields select{width:100%;margin-top:5px;background:var(--paper);border:1px solid var(--line);
+  border-radius:8px;padding:13px 11px;font-family:var(--body);font-size:16px;color:var(--text)}
+.fields select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(2,59,159,.18)}
+.result{margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}
+.result .r{font-family:var(--disp);font-weight:700;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--deep);margin-bottom:9px}
+.result .r em{font-style:normal;color:var(--blue)}
+.cut{font-size:12.5px;color:var(--muted);margin-top:13px;line-height:1.5}
+
+.section{font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin:30px 0 12px;
+  display:flex;align-items:center;gap:10px}
+.section em{font-style:normal;color:var(--deep)}
+.section span{height:1px;flex:1;background:var(--line)}
+
+.search{margin-bottom:14px}
+.search input{width:100%;background:var(--white);border:1px solid var(--line);border-radius:10px;
+  padding:15px;color:var(--text);font-family:var(--body);font-size:17px}
+.search input::placeholder{color:#8B95B5}
+.search input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(2,59,159,.18)}
+
+.grp{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--blue);margin:20px 0 8px}
+.names{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden}
+.nrow{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:var(--white);padding:14px 15px;width:100%;font-size:16px;font-weight:500}
+.nrow:hover,.nrow:focus-visible{background:var(--paper)}
+.nrow em{font-style:normal;font-family:var(--disp);font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);flex:0 0 auto}
+.empty{padding:22px 4px;color:var(--muted);font-size:15px}
+
+.back{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);padding:6px 0;display:inline-block}
+.pname{font-family:var(--disp);font-weight:700;font-size:34px;text-transform:uppercase;
+  line-height:1.05;margin-top:6px;color:var(--deep)}
+.ptag{display:inline-block;font-family:var(--disp);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;border-radius:5px;padding:4px 9px;margin-top:9px}
+.ptag.dev{background:var(--green-bg);color:var(--green)}
+.ptag.open{background:#E7EDFA;color:var(--blue)}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:14px 15px 15px;margin-bottom:10px}
+.card.past{opacity:.5}
+.fecha{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:2px}
+.hora{font-family:var(--disp);font-weight:700;font-size:27px;line-height:1.05;color:var(--deep)}
+.meta{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.6}
+.meta b{color:var(--text);font-weight:600}
+.badge{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;border-radius:4px;padding:3px 7px;margin-left:8px;vertical-align:4px}
+.badge.hoy{background:var(--blue);color:var(--white)}
+.badge.ya{background:var(--line);color:var(--muted)}
+.ics{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--blue);border:1px solid var(--line);border-radius:7px;
+  padding:9px 13px;margin-top:12px;text-decoration:none}
+.ics:hover{border-color:var(--blue);background:var(--blue);color:var(--white)}
+
+.btn{display:inline-block;font-family:var(--disp);font-size:14px;letter-spacing:.12em;
+  text-transform:uppercase;border:1px solid var(--blue);color:var(--blue);
+  border-radius:8px;padding:12px 16px;margin-top:14px;background:var(--white);text-decoration:none}
+.btn:hover{background:var(--blue);color:var(--white)}
+.btn.pri{background:var(--blue);color:var(--white);border-color:var(--blue)}
+.btn.pri:hover{background:var(--deep);border-color:var(--deep)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.actions .btn{margin-top:0}
+
+.info{margin-top:28px;background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:16px}
+.info h3{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:11px}
+.steps{list-style:none;counter-reset:st;font-size:14px;color:var(--muted);line-height:1.6}
+.steps>li{counter-increment:st;padding-left:31px;position:relative;margin-bottom:12px}
+.steps>li:last-child{margin-bottom:0}
+.steps>li:before{content:counter(st);position:absolute;left:0;top:1px;width:22px;height:22px;
+  border-radius:50%;background:var(--yellow);color:var(--deep);font-family:var(--disp);
+  font-weight:700;font-size:13px;line-height:22px;text-align:center}
+.steps>li b{color:var(--text);font-weight:600}
+.carpas{display:grid;gap:8px;margin-top:9px}
+.carpa{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.carpa b{display:block;font-family:var(--disp);font-size:14px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:3px}
+.carpa i{display:block;font-style:normal;font-size:13.5px;color:var(--muted);line-height:1.55}
+.carpa em{display:inline-block;font-style:normal;font-family:var(--disp);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--deep);background:var(--yellow);
+  border-radius:4px;padding:2px 7px;margin-top:7px}
+
+.foot{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted);line-height:1.7}
+@media(min-width:520px){h1{font-size:46px}.fields{grid-template-columns:1fr 1fr 1fr}
+  .fields label.wide{grid-column:auto}}
+@media(prefers-reduced-motion:no-preference){.card,.nrow{transition:border-color .15s,background .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <img class="logo" src="logo.png" alt="Club Voleibol Vaqueros" width="92" height="56"
+         onerror="this.style.display='none'">
+    <p class="eyebrow">Try-outs 2026-2027<span></span>Collazo</p>
+    <h1>&iquest;Cu&aacute;ndo es mi try-out?</h1>
+    <p class="sub" id="sub"></p>
+  </header>
+  <main id="app"></main>
+  <p class="foot" id="foot"></p>
+</div>
+<script>
+/* ============================================================
+   FUENTE DE LOS DATOS
+   "Fechas Try-outs Vaqueros 2026" (PDF oficial del club) +
+   pagina oficial de try-outs 26-27. 58 turnos, 26 divisiones,
+   1 al 17 de agosto de 2026, cancha Collazo.
+   NO usar el PDF de ayudantes de try-outs como fuente: tiene
+   errores de hora. Solo sirve de contexto.
+   ============================================================ */
+var S=[{"dia":1,"dow":"Sábado","h":"9:00am","min":540,"sede":"Collazo","divs":["9UF"],"id":0},{"dia":1,"dow":"Sábado","h":"10:30am","min":630,"sede":"Collazo","divs":["10UF"],"id":1},{"dia":1,"dow":"Sábado","h":"12:00pm","min":720,"sede":"Collazo","divs":["11UF Open/Club"],"id":2},{"dia":1,"dow":"Sábado","h":"1:30pm","min":810,"sede":"Collazo","divs":["12UF Open/Club"],"id":3},{"dia":1,"dow":"Sábado","h":"3:00pm","min":900,"sede":"Collazo","divs":["11-12UM"],"id":4},{"dia":1,"dow":"Sábado","h":"4:30pm","min":990,"sede":"Collazo","divs":["13UF Open/Club"],"id":5},{"dia":2,"dow":"Domingo","h":"9:00am","min":540,"sede":"Collazo","divs":["9UF"],"id":6},{"dia":2,"dow":"Domingo","h":"10:30am","min":630,"sede":"Collazo","divs":["10UF"],"id":7},{"dia":2,"dow":"Domingo","h":"12:00pm","min":720,"sede":"Collazo","divs":["11UF Open/Club"],"id":8},{"dia":2,"dow":"Domingo","h":"1:30pm","min":810,"sede":"Collazo","divs":["12UF Open/Club"],"id":9},{"dia":2,"dow":"Domingo","h":"3:00pm","min":900,"sede":"Collazo","divs":["13UF Open/Club"],"id":10},{"dia":2,"dow":"Domingo","h":"4:30pm","min":990,"sede":"Collazo","divs":["13-14UM"],"id":11},{"dia":3,"dow":"Lunes","h":"5:30pm","min":1050,"sede":"Collazo","divs":["14UF Open/Club"],"id":12},{"dia":3,"dow":"Lunes","h":"7:00pm","min":1140,"sede":"Collazo","divs":["15UF Open/Club"],"id":13},{"dia":3,"dow":"Lunes","h":"8:30pm","min":1230,"sede":"Collazo","divs":["16UF Open/Club"],"id":14},{"dia":4,"dow":"Martes","h":"5:30pm","min":1050,"sede":"Collazo","divs":["11-12UM"],"id":15},{"dia":4,"dow":"Martes","h":"7:00pm","min":1140,"sede":"Collazo","divs":["13-14UM"],"id":16},{"dia":4,"dow":"Martes","h":"8:30pm","min":1230,"sede":"Collazo","divs":["15-16UM"],"id":17},{"dia":5,"dow":"Miércoles","h":"5:30pm","min":1050,"sede":"Collazo","divs":["14UF Open/Club"],"id":18},{"dia":5,"dow":"Miércoles","h":"7:00pm","min":1140,"sede":"Collazo","divs":["15UF Open/Club"],"id":19},{"dia":5,"dow":"Miércoles","h":"8:30pm","min":1230,"sede":"Collazo","divs":["16UF Open/Club"],"id":20},{"dia":6,"dow":"Jueves","h":"5:30pm","min":1050,"sede":"Collazo","divs":["11UF Open/Club"],"id":21},{"dia":6,"dow":"Jueves","h":"7:00pm","min":1140,"sede":"Collazo","divs":["12UF Open/Club"],"id":22},{"dia":6,"dow":"Jueves","h":"8:30pm","min":1230,"sede":"Collazo","divs":["13UF Open/Club"],"id":23},{"dia":7,"dow":"Viernes","h":"5:30pm","min":1050,"sede":"Collazo","divs":["11-12UM"],"id":24},{"dia":7,"dow":"Viernes","h":"7:00pm","min":1140,"sede":"Collazo","divs":["13-14UM"],"id":25},{"dia":7,"dow":"Viernes","h":"8:30pm","min":1230,"sede":"Collazo","divs":["15-16UM"],"id":26},{"dia":8,"dow":"Sábado","h":"9:00am","min":540,"sede":"Collazo","divs":["9UF","10UF"],"id":27},{"dia":8,"dow":"Sábado","h":"10:30am","min":630,"sede":"Collazo","divs":["11UF Desarrollo (New)","12UF Desarrollo (New)"],"id":28},{"dia":8,"dow":"Sábado","h":"12:00pm","min":720,"sede":"Collazo","divs":["14UF Open/Club","16UF Open/Club"],"id":29},{"dia":8,"dow":"Sábado","h":"3:00pm","min":900,"sede":"Collazo","divs":["15UF Open/Club"],"id":30},{"dia":9,"dow":"Domingo","h":"9:00am","min":540,"sede":"Collazo","divs":["9-10F Desarrollo"],"id":31},{"dia":9,"dow":"Domingo","h":"10:30am","min":630,"sede":"Collazo","divs":["11UF Desarrollo (New)","12UF Desarrollo (New)"],"id":32},{"dia":9,"dow":"Domingo","h":"12:00pm","min":720,"sede":"Collazo","divs":["13UF Desarrollo (New)","14UF Desarrollo (New)"],"id":33},{"dia":9,"dow":"Domingo","h":"1:30pm","min":810,"sede":"Collazo","divs":["15UF Desarrollo","16UF Desarrollo (New)"],"id":34},{"dia":9,"dow":"Domingo","h":"3:00pm","min":900,"sede":"Collazo","divs":["15-16UM"],"id":35},{"dia":9,"dow":"Domingo","h":"4:30pm","min":990,"sede":"Collazo","divs":["17-18UM"],"id":36},{"dia":10,"dow":"Lunes","h":"5:30pm","min":1050,"sede":"Collazo","divs":["9-10UM"],"id":37},{"dia":10,"dow":"Lunes","h":"7:00pm","min":1140,"sede":"Collazo","divs":["17UF Open/Club"],"id":38},{"dia":10,"dow":"Lunes","h":"8:30pm","min":1230,"sede":"Collazo","divs":["18UF Open/Club","20UF Open"],"id":39},{"dia":11,"dow":"Martes","h":"5:30pm","min":1050,"sede":"Collazo","divs":["7-8UF","7-8UM"],"id":40},{"dia":11,"dow":"Martes","h":"7:00pm","min":1140,"sede":"Collazo","divs":["13UF Desarrollo (New)","14UF Desarrollo (New)"],"id":41},{"dia":11,"dow":"Martes","h":"8:30pm","min":1230,"sede":"Collazo","divs":["17-18UM"],"id":42},{"dia":12,"dow":"Miércoles","h":"5:30pm","min":1050,"sede":"Collazo","divs":["9-10UM"],"id":43},{"dia":12,"dow":"Miércoles","h":"7:00pm","min":1140,"sede":"Collazo","divs":["17UF Open/Club"],"id":44},{"dia":12,"dow":"Miércoles","h":"8:30pm","min":1230,"sede":"Collazo","divs":["18UF Open/Club","20UF Open"],"id":45},{"dia":13,"dow":"Jueves","h":"5:30pm","min":1050,"sede":"Collazo","divs":["7-8UF","7-8UM"],"id":46},{"dia":13,"dow":"Jueves","h":"7:00pm","min":1140,"sede":"Collazo","divs":["11UF Desarrollo (New)","12UF Desarrollo (New)"],"id":47},{"dia":13,"dow":"Jueves","h":"8:30pm","min":1230,"sede":"Collazo","divs":["17-18UM"],"id":48},{"dia":14,"dow":"Viernes","h":"5:30pm","min":1050,"sede":"Collazo","divs":["9-10F Desarrollo"],"id":49},{"dia":14,"dow":"Viernes","h":"7:00pm","min":1140,"sede":"Collazo","divs":["9-10UM"],"id":50},{"dia":14,"dow":"Viernes","h":"8:30pm","min":1230,"sede":"Collazo","divs":["15UF Desarrollo","16UF Desarrollo (New)"],"id":51},{"dia":15,"dow":"Sábado","h":"9:00am","min":540,"sede":"Collazo","divs":["4-6U Mixto","7-8UF"],"id":52},{"dia":15,"dow":"Sábado","h":"10:30am","min":630,"sede":"Collazo","divs":["9-10F Desarrollo","7-8UM"],"id":53},{"dia":15,"dow":"Sábado","h":"12:00pm","min":720,"sede":"Collazo","divs":["13UF Desarrollo (New)"],"id":54},{"dia":15,"dow":"Sábado","h":"1:30pm","min":810,"sede":"Collazo","divs":["14UF Desarrollo (New)","15UF Desarrollo","16UF Desarrollo (New)"],"id":55},{"dia":17,"dow":"Lunes","h":"6:00pm","min":1080,"sede":"Collazo","divs":["17UF Open/Club"],"id":56},{"dia":17,"dow":"Lunes","h":"7:30pm","min":1170,"sede":"Collazo","divs":["18UF Open/Club","20UF Open"],"id":57}];
+
+var ANIO = 2026, MES = 7;           /* agosto 2026 (mes 0-11) */
+var DUR = 90;                       /* duracion estimada del turno, en minutos */
+var ANTES = 45;                     /* llegar 30-45 min antes; usamos 45 */
+var SEDE_DIR = "Cancha Collazo";
+var LINK_CLUB = "https://www.clubvoleibolvaqueros.org/page/show/8431920-try-outs-26-27";
+
+/* ============================================================
+   CORTE DE EDAD — misma logica que el app "age check".
+   La categoria se determina por el "anio de voleibol": nacidos
+   jul-dic cuentan con su anio natural; nacidos ene-jun cuentan
+   con el anio anterior. Ciclo con fecha limite 1 de julio de 2027.
+   ACTUALIZAR ESTA SECCION CADA TEMPORADA.
+   ============================================================ */
+var CICLO = "1 de julio de 2027";
+var DIVISIONS = {2020:"6U",2019:"7U",2018:"8U",2017:"9U",2016:"10U",2015:"11U",
+                 2014:"12U",2013:"13U",2012:"14U",2011:"15U",2010:"16U",
+                 2009:"17U",2008:"18U"};
+var YOUNGEST_YEAR = 2020, OLDEST_YEAR = 2008, YOUNGEST_DIVISION = "6U";
+
+/* Categoria U + genero -> divisiones reales de este try-out */
+var MAPA = {
+  F: {"6U":["4-6U Mixto"],"7U":["7-8UF"],"8U":["7-8UF"],
+      "9U":["9UF","9-10F Desarrollo"],"10U":["10UF","9-10F Desarrollo"],
+      "11U":["11UF Open/Club","11UF Desarrollo (New)"],
+      "12U":["12UF Open/Club","12UF Desarrollo (New)"],
+      "13U":["13UF Open/Club","13UF Desarrollo (New)"],
+      "14U":["14UF Open/Club","14UF Desarrollo (New)"],
+      "15U":["15UF Open/Club","15UF Desarrollo"],
+      "16U":["16UF Open/Club","16UF Desarrollo (New)"],
+      "17U":["17UF Open/Club"],"18U":["18UF Open/Club"],"20U":["20UF Open"]},
+  M: {"6U":["4-6U Mixto"],"7U":["7-8UM"],"8U":["7-8UM"],
+      "9U":["9-10UM"],"10U":["9-10UM"],"11U":["11-12UM"],"12U":["11-12UM"],
+      "13U":["13-14UM"],"14U":["13-14UM"],"15U":["15-16UM"],"16U":["15-16UM"],
+      "17U":["17-18UM"],"18U":["17-18UM"]}
+};
+
+function vbYear(anio, mesIdx){ return mesIdx <= 5 ? anio - 1 : anio; }
+function categoriaU(vy){
+  if (vy >= YOUNGEST_YEAR) return YOUNGEST_DIVISION;
+  if (vy < OLDEST_YEAR) return "20U";      /* mayor de 18U -> Open 20U */
+  return DIVISIONS[vy] || null;
+}
+
+var GRUPOS = [
+  {t:"Femenino",
+   m:function(d){ return /UF/.test(d) && !/Desarrollo/.test(d); }},
+  {t:"Femenino — Desarrollo", m:function(d){ return /Desarrollo/.test(d); }},
+  {t:"Masculino",             m:function(d){ return /UM$/.test(d); }},
+  {t:"Mixto",                 m:function(d){ return /Mixto/.test(d); }}
+];
+
+var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio",
+             "agosto","septiembre","octubre","noviembre","diciembre"];
+
+var state = { q:"", div:"" };
+
+/* ---------------- utilidades ---------------- */
+function norm(s){ return (s||"").toLowerCase()
+  .replace(/[áàäâ]/g,"a").replace(/[éèëê]/g,"e").replace(/[íìïî]/g,"i")
+  .replace(/[óòöô]/g,"o").replace(/[úùüû]/g,"u").replace(/ñ/g,"n").trim(); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function pad(n){ return n<10 ? "0"+n : ""+n; }
+function startOf(s){ return new Date(ANIO, MES, s.dia, Math.floor(s.min/60), s.min%60, 0, 0); }
+function hhmm(min){
+  var h = Math.floor(min/60), m = min%60, ap = h>=12 ? "pm" : "am";
+  h = h%12; if (h===0) h = 12;
+  return h + ":" + pad(m) + ap;
+}
+function llegada(s){ return hhmm(s.min - ANTES); }
+function fechaLarga(s){ return s.dow + " " + s.dia + " de " + MESES[MES]; }
+function pasado(s){ return startOf(s).getTime() + DUR*60000 < Date.now(); }
+function esHoy(s){
+  var n = new Date();
+  return n.getFullYear()===ANIO && n.getMonth()===MES && n.getDate()===s.dia;
+}
+function enCurso(s){
+  var st = startOf(s).getTime(), n = Date.now();
+  return n >= st && n < st + DUR*60000;
+}
+
+function todasDivs(){
+  var seen = {}, out = [], i, j;
+  for (i = 0; i < S.length; i++) {
+    for (j = 0; j < S[i].divs.length; j++) {
+      var d = S[i].divs[j];
+      if (!seen[d]) { seen[d] = {n:d, c:0}; out.push(seen[d]); }
+      seen[d].c++;
+    }
+  }
+  out.sort(function(a,b){ return a.n.localeCompare(b.n, "es", {numeric:true}); });
+  return out;
+}
+var DIVS = todasDivs();
+
+function sesionesDe(div){
+  var out = [], i;
+  for (i = 0; i < S.length; i++) { if (S[i].divs.indexOf(div) >= 0) out.push(S[i]); }
+  out.sort(function(a,b){ return a.dia===b.dia ? a.min-b.min : a.dia-b.dia; });
+  return out;
+}
+function proximo(list){
+  var i;
+  for (i = 0; i < list.length; i++) { if (!pasado(list[i])) return list[i]; }
+  return null;
+}
+
+/* ---------------- archivo .ics ---------------- */
+function utc(d){
+  return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+"T"+
+         pad(d.getUTCHours())+pad(d.getUTCMinutes())+"00Z";
+}
+/* hora local "flotante": el evento cae a la hora de cancha sin
+   importar la zona horaria del telefono. */
+function local(d){
+  return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"T"+
+         pad(d.getHours())+pad(d.getMinutes())+"00";
+}
+function icsDe(list, titulo){
+  var L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CVVB//Try-Outs 2026-27//ES",
+           "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Try-outs "+titulo], i;
+  for (i = 0; i < list.length; i++) {
+    var s = list[i], st = startOf(s), en = new Date(st.getTime()+DUR*60000);
+    L.push("BEGIN:VEVENT");
+    L.push("UID:cvvb-"+s.id+"-"+norm(titulo).replace(/[^a-z0-9]/g,"")+"@vaqueros");
+    L.push("DTSTAMP:"+utc(new Date()));
+    L.push("DTSTART:"+local(st));
+    L.push("DTEND:"+local(en));
+    L.push("SUMMARY:Try-out "+titulo+" - Vaqueros");
+    L.push("LOCATION:"+SEDE_DIR);
+    L.push("DESCRIPTION:Try-out Club Voleibol Vaqueros 2026-27.\\n"+
+           "Llega entre 30 y 45 min antes (a las "+llegada(s)+").\\n"+
+           "Carpa 1 si ya estas inscrito\\, Carpa 2 si no.\\n"+
+           "Coloca tu numero al frente de la camisa.\\n"+
+           "Un (1) acompanante por participante.");
+    L.push("BEGIN:VALARM","TRIGGER:-PT3H","ACTION:DISPLAY",
+           "DESCRIPTION:Try-out "+titulo+" hoy a las "+s.h,"END:VALARM");
+    L.push("END:VEVENT");
+  }
+  L.push("END:VCALENDAR");
+  return "data:text/calendar;charset=utf-8," + encodeURIComponent(L.join("\r\n"));
+}
+
+/* ---------------- vista inicial ---------------- */
+function edadPanel(){
+  var y, i, ya = "", ma = "";
+  for (y = 2022; y >= 2004; y--) { ya += '<option value="'+y+'">'+y+'</option>'; }
+  for (i = 0; i < 12; i++) { ma += '<option value="'+i+'">'+MESES[i]+'</option>'; }
+  return '<div class="panel"><h2>¿Cuál es mi división?</h2>'+
+    '<p class="hint">Escoge tu fecha de nacimiento y te decimos a qué división '+
+    'perteneces y cuándo te toca.</p>'+
+    '<div class="fields">'+
+      '<label>Año<select id="anio"><option value="">—</option>'+ya+'</select></label>'+
+      '<label>Mes<select id="mes"><option value="">—</option>'+ma+'</select></label>'+
+      '<label class="wide">Género<select id="gen"><option value="">—</option>'+
+        '<option value="F">Femenino</option><option value="M">Masculino</option></select></label>'+
+    '</div><div id="edadOut"></div>'+
+    '<p class="cut">Corte de edad del reglamento vigente para el ciclo con fecha límite '+
+    CICLO+'.</p></div>';
+}
+
+function edadResultado(){
+  var a = document.getElementById("anio").value,
+      m = document.getElementById("mes").value,
+      g = document.getElementById("gen").value,
+      box = document.getElementById("edadOut");
+  if (a === "" || m === "" || g === "") { box.innerHTML = ""; return; }
+  var vy = vbYear(+a, +m), cat = categoriaU(vy);
+  var lista = cat ? (MAPA[g] || {})[cat] : null;
+  var nacio = "Nacid" + (g==="F"?"a":"o") + " en " + MESES[+m] + " de " + a;
+  if (!lista || !lista.length) {
+    box.innerHTML = '<div class="result"><p class="r">'+esc(nacio)+'</p>'+
+      '<p class="empty">No hay una división de try-out para esa edad. '+
+      'Comunícate con el club.</p></div>';
+    return;
+  }
+  var h = '<div class="result"><p class="r">'+esc(nacio)+' · categoría <em>'+esc(cat)+
+          '</em></p><div class="names">', i;
+  for (i = 0; i < lista.length; i++) {
+    var n = sesionesDe(lista[i]).length;
+    h += '<button class="nrow" data-act="div" data-v="'+esc(lista[i])+'"><span>'+
+         esc(lista[i])+'</span><em>'+n+' fecha'+(n===1?"":"s")+' ›</em></button>';
+  }
+  h += '</div>';
+  if (lista.length > 1) {
+    h += '<p class="cut">Te aparecen dos divisiones. Si no sabes cuál te corresponde, '+
+         'pregunta al club antes del try-out.</p>';
+  }
+  box.innerHTML = h + '</div>';
+}
+
+function vistaInicio(){
+  var q = norm(state.q), h = edadPanel();
+  h += '<p class="section"><em>¿Ya sabes tu división?</em><span></span></p>';
+  h += '<div class="search"><input id="q" type="search" autocomplete="off" '+
+       'placeholder="Busca tu división (ej. 12UF, 15-16UM)" value="'+esc(state.q)+'"></div>';
+  var hits = [], i;
+  for (i = 0; i < DIVS.length; i++) { if (!q || norm(DIVS[i].n).indexOf(q) >= 0) hits.push(DIVS[i]); }
+  if (!hits.length) {
+    return h + '<p class="empty">No hay divisiones que digan &ldquo;'+esc(state.q)+'&rdquo;.</p>' + infoBox();
+  }
+  var usados = {}, gi, j;
+  for (gi = 0; gi < GRUPOS.length; gi++) {
+    var g = GRUPOS[gi], sub = [];
+    for (j = 0; j < hits.length; j++) {
+      if (!usados[hits[j].n] && g.m(hits[j].n)) { sub.push(hits[j]); usados[hits[j].n] = 1; }
+    }
+    if (!sub.length) continue;
+    h += '<p class="grp">'+g.t+'</p><div class="names">';
+    for (j = 0; j < sub.length; j++) {
+      h += '<button class="nrow" data-act="div" data-v="'+esc(sub[j].n)+'"><span>'+
+           esc(sub[j].n)+'</span><em>'+sub[j].c+' fecha'+(sub[j].c===1?"":"s")+' ›</em></button>';
+    }
+    h += '</div>';
+  }
+  return h + infoBox();
+}
+
+/* ---------------- vista de la division ---------------- */
+function tarjeta(s, div){
+  var h = '<div class="card'+(pasado(s) ? " past" : "")+'">';
+  var badge = "";
+  if (enCurso(s)) badge = '<span class="badge hoy">En cancha ahora</span>';
+  else if (esHoy(s)) badge = '<span class="badge hoy">Hoy</span>';
+  else if (pasado(s)) badge = '<span class="badge ya">Ya pasó</span>';
+  h += '<p class="fecha">'+esc(fechaLarga(s))+'</p>';
+  h += '<p class="hora">'+esc(s.h)+badge+'</p>';
+  h += '<p class="meta">Cancha <b>'+esc(s.sede)+'</b> · llega a las <b>'+
+       esc(llegada(s))+'</b></p>';
+  if (!pasado(s)) {
+    h += '<a class="ics" href="'+icsDe([s], div)+'" download="try-out-'+
+         pad(s.dia)+'-agosto.ics">Añadir esta fecha al calendario</a>';
+  }
+  return h + '</div>';
+}
+
+function vistaDiv(){
+  var div = state.div, list = sesionesDe(div), i;
+  var esDev = /Desarrollo/.test(div);
+  var h = '<button class="back" data-act="back">&larr; Volver</button>';
+  h += '<h2 class="pname">'+esc(div)+'</h2>';
+  h += '<span class="ptag '+(esDev?"dev":"open")+'">'+
+       (esDev ? "División Desarrollo" : "Open / Club")+'</span>';
+  var px = proximo(list);
+  if (px) {
+    var d = Math.ceil((startOf(px)-new Date())/86400000);
+    var cuando = enCurso(px) ? "ahora mismo"
+               : (esHoy(px) ? "hoy" : (d<=1 ? "mañana" : "en "+d+" días"));
+    h += '<div class="now"><u>Tu próximo try-out · '+cuando+'</u><b>'+
+         esc(fechaLarga(px))+' · '+esc(px.h)+'</b>'+
+         '<i>Cancha '+esc(px.sede)+' · llega a las '+esc(llegada(px))+'</i></div>';
+  } else {
+    h += '<div class="now quiet"><u>'+esc(div)+'</u><b>Ya pasaron todas las fechas</b>'+
+         '<i>Comunícate con el club si no pudiste asistir.</i></div>';
+  }
+  h += '<p class="section"><em>Tus fechas ('+list.length+')</em><span></span></p>';
+  for (i = 0; i < list.length; i++) { h += tarjeta(list[i], div); }
+  var futuras = [];
+  for (i = 0; i < list.length; i++) { if (!pasado(list[i])) futuras.push(list[i]); }
+  if (futuras.length > 1) {
+    h += '<div class="actions"><a class="btn pri" href="'+icsDe(futuras, div)+
+         '" download="try-outs-'+norm(div).replace(/[^a-z0-9]+/g,"-")+'.ics">'+
+         'Añadir las '+futuras.length+' fechas al calendario</a></div>';
+  }
+  return h + infoBox();
+}
+
+/* ---------------- instrucciones oficiales ---------------- */
+function infoBox(){
+  return '<div class="info"><h3>Instrucciones generales</h3><ol class="steps">'+
+    '<li>Llega entre <b>30 y 45 minutos antes</b> de tu hora asignada.</li>'+
+    '<li>Dirígete a la carpa que te corresponde:'+
+      '<div class="carpas">'+
+        '<div class="carpa"><b>Carpa 1 — ya inscrito</b>'+
+          '<i>Recoges tu número de tryout y confirmas la talla de camisa.</i>'+
+          '<em>3-5 minutos</em></div>'+
+        '<div class="carpa"><b>Carpa 2 — sin inscribir</b>'+
+          '<i>Completas la inscripción 100% online, luego recibes tu número de '+
+          'tryout y confirmas la talla de camisa.</i><em>10-15 minutos</em></div>'+
+      '</div></li>'+
+    '<li>En el área designada fuera de la cancha, coloca el número en la '+
+      '<b>parte frontal de tu camisa</b>.</li>'+
+    '<li>La entrada a la cancha será únicamente cuando se ofrezcan las '+
+      'instrucciones generales de tu división.</li>'+
+    '<li>No se permitirá la entrada a una división hasta que la anterior haya '+
+      'salido completamente de la cancha.</li>'+
+    '<li>Se permite <b>un (1) acompañante</b> por participante, sin excepción. '+
+      'Habrá personal de seguridad controlando el acceso.</li>'+
+    '</ol><a class="btn" href="'+LINK_CLUB+'" target="_blank" rel="noopener">'+
+    'Información oficial del club</a></div>';
+}
+
+/* ---------------- render ---------------- */
+function render(){
+  var app = document.getElementById("app");
+  app.innerHTML = state.div ? vistaDiv() : vistaInicio();
+
+  document.getElementById("sub").textContent =
+    state.div ? "" : "26 divisiones · 1 al 17 de agosto de 2026 · cancha Collazo";
+  document.getElementById("foot").innerHTML =
+    "Fechas y horas según el calendario oficial de try-outs 2026-27 del Club Voleibol " +
+    "Vaqueros. Pueden cambiar — verifica en la " +
+    '<a href="'+LINK_CLUB+'" target="_blank" rel="noopener">página del club</a>.';
+
+  var q = document.getElementById("q");
+  if (q) {
+    q.addEventListener("input", function(){
+      state.q = q.value; render();
+      var n = document.getElementById("q");
+      if (n) { n.focus(); n.setSelectionRange(n.value.length, n.value.length); }
+    });
+  }
+  var ids = ["anio","mes","gen"], k;
+  for (k = 0; k < ids.length; k++) {
+    var el = document.getElementById(ids[k]);
+    if (el) el.addEventListener("change", edadResultado);
+  }
+}
+
+document.addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("[data-act]") : null;
+  if (!b) return;
+  var act = b.getAttribute("data-act");
+  if (act === "div") { state.div = b.getAttribute("data-v"); window.scrollTo(0,0); }
+  else if (act === "back") { state.div = ""; window.scrollTo(0,0); }
+  else return;
+  render();
+});
+
+render();
+
+if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){ return; });
+  });
+}
+</script>
+</body>
+</html>
