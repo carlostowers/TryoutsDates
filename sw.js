@@ -1,7 +1,7 @@
 /* Service worker — Mi Try-Out CVVB 2026-27.
    Sube CACHE a v2, v3... cada vez que cambies index.html,
    asi los telefonos que ya lo instalaron reciben la version nueva. */
-var CACHE = "mi-tryout-cvvb-v4";
+var CACHE = "mi-tryout-cvvb-v5";
 var ASSETS = [
   "./",
   "./index.html",

@@ -152,10 +152,14 @@ h1{font-family:var(--disp);font-weight:700;font-size:38px;line-height:1.02;
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .actions .btn{margin-top:0}
 
-.info{margin-top:28px;background:var(--white);border:1px solid var(--line);
+.info{margin-top:16px;background:var(--white);border:1px solid var(--line);
   border-radius:12px;padding:16px}
+.info:first-of-type{margin-top:28px}
 .info h3{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--blue);margin-bottom:11px}
+.info p.lead{font-size:14px;color:var(--muted);margin:-4px 0 12px}
+.salida{margin-top:16px}
+.salida .btn{width:100%;text-align:center}
 .steps{list-style:none;counter-reset:st;font-size:14px;color:var(--muted);line-height:1.6}
 .steps>li{counter-increment:st;padding-left:31px;position:relative;margin-bottom:12px}
 .steps>li:last-child{margin-bottom:0}
@@ -171,6 +175,11 @@ h1{font-family:var(--disp);font-weight:700;font-size:38px;line-height:1.02;
 .carpa em{display:inline-block;font-style:normal;font-family:var(--disp);font-size:11px;
   letter-spacing:.12em;text-transform:uppercase;color:var(--deep);background:var(--yellow);
   border-radius:4px;padding:2px 7px;margin-top:7px}
+/* Nota destacada dentro de un paso. Roja = ojo con esto. Verde = tranquilo. */
+.steps .note{display:block;margin-top:8px;font-size:13.5px;line-height:1.5;
+  border-radius:7px;padding:9px 11px;color:var(--alert);background:var(--alert-bg);
+  border-left:3px solid var(--alert)}
+.steps .note.ok{color:var(--green);background:var(--green-bg);border-left-color:var(--green)}
 
 .foot{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
   font-size:13px;color:var(--muted);line-height:1.7}
@@ -464,7 +473,10 @@ function vistaDiv(){
 
 /* ---------------- instrucciones oficiales ---------------- */
 function infoBox(){
-  return '<div class="info"><h3>Instrucciones generales</h3><ol class="steps">'+
+  /* Dos bloques separados a proposito: el primero es lo que pasa EL DIA del
+     try-out, el segundo es lo que pasa LOS DIAS DESPUES. Mezclarlos confunde.
+     El enlace al club va al final de todo, como salida unica.               */
+  var h = '<div class="info"><h3>El día del try-out</h3><ol class="steps">'+
     '<li>Llega entre <b>30 y 45 minutos antes</b> de tu hora asignada.</li>'+
     '<li>Dirígete a la carpa que te corresponde:'+
       '<div class="carpas">'+
@@ -483,8 +495,37 @@ function infoBox(){
       'salido completamente de la cancha.</li>'+
     '<li>Se permite <b>un (1) acompañante</b> por participante, sin excepción. '+
       'Habrá personal de seguridad controlando el acceso.</li>'+
-    '</ol><a class="btn" href="'+LINK_CLUB+'" target="_blank" rel="noopener">'+
-    'Información oficial del club</a></div>';
+    '</ol></div>';
+
+  h += '<div class="info"><h3>Después del try-out</h3>'+
+    '<p class="lead">Así funciona el proceso de ofrecimientos.</p>'+
+    '<ol class="steps">'+
+    '<li>Si recibes una oferta oficial, te llegará un <b>mensaje de texto</b> '+
+      'con toda la información.</li>'+
+    '<li>Tienes <b>24 horas</b> para completar el registro y pagar la membresía '+
+      'del club. El proceso es 100% online, sin excepciones.'+
+      '<span class="note">Revisa tus mensajes esos días. Si no aceptas dentro de '+
+      'las 24 horas, la oferta expira automáticamente.</span></li>'+
+    '<li>Cuando termines, envía al entrenador una <b>foto o captura de pantalla</b> '+
+      'que confirme el registro.</li>'+
+    '<li>Si la oferta expira, puedes seguir participando en los try-outs y recibir '+
+      'otra oferta para el mismo grupo o para uno de mayor nivel, pero no para uno '+
+      'de menor rango.</li>'+
+    '<li>También puedes recibir un mensaje diciendo que <b>sigues en evaluación</b> '+
+      'entre uno o dos equipos. Si es tu caso, sigue asistiendo a los try-outs '+
+      'mientras termina el proceso.</li>'+
+    '<li>Si no recibes mensaje el primer o segundo día, <b>no significa que estés '+
+      'fuera del club</b>.'+
+      '<span class="note ok">Hay equipos Open, Club y Desarrollo, así que hay '+
+      'oportunidades para todos los niveles. La asignación de estos grupos empieza '+
+      'a partir del tercer día. Sigue participando.</span></li>'+
+    '<li>Si al final no recibes una oferta oficial, el club ofrece <b>Clínicas de '+
+      'Desarrollo</b> que empiezan en septiembre.</li>'+
+    '</ol></div>';
+
+  h += '<div class="actions salida"><a class="btn" href="'+LINK_CLUB+'" '+
+       'target="_blank" rel="noopener">Información oficial del club</a></div>';
+  return h;
 }
 
 /* ---------------- render ---------------- */
